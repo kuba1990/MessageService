@@ -1,0 +1,29 @@
+service:
+    name: bi-message-svc
+    fullName: bi-message-svc
+    groupName: bi-message-svc
+    description: bi-message-svc
+    gpmCode: ??????
+    version: 1.0
+    tier: svc
+    replicas: 1
+    maintainer:
+        name: Team Pint Maniacs
+        email: pint-maniacs@bisnode.com
+    categories:
+      - ??
+containers:
+    default:
+        ports:
+            - 8080
+        livenessProbe:
+            httpGet:
+                path: /ping
+                port: 8080
+            initialDelaySeconds: 180
+            timeoutSeconds: 5
+        readinessProbe:
+            httpGet:
+                path: /ping
+                port: 8080
+            timeoutSeconds: 5
