@@ -1,0 +1,24 @@
+db.getCollection('Info4C_PEP_Desk_raw_Entry.xml').find()
+
+db.getCollection('Info4C_PEP_Desk_raw_Entry.xml').update(
+   {}, //find criteria
+   // this row contains fix with $set oper
+   { $set : { migrated: null}} , { multi: true }); 
+
+
+db.adminCommand( { getLog : "global" } )
+
+
+
+http://localhost:8080/bi-message-svc/v1/messages?limit=100
+
+
+
+INSERT INTO destTable
+SELECT Field1,Field2,Field3,...
+FROM srcTable
+WHERE NOT EXISTS(SELECT *
+                 FROM destTable
+                 WHERE (srcTable.Field1=destTable.Field1 and
+                       SrcTable.Field2=DestTable.Field2...etc.)
+                 )

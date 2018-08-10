@@ -1,4 +1,4 @@
-package com.bi.service.model;
+package com.bi.service.model.mongodb;
 
 import lombok.Data;
 import org.bson.types.ObjectId;
@@ -6,7 +6,7 @@ import org.bson.types.ObjectId;
 @Data
 public class Person {
 
- private ObjectId _id;
+    private ObjectId _id;
     private String identifier;
     private String title;
     private String gender;
@@ -16,9 +16,8 @@ public class Person {
     private String function;
     private String category;
     private String country;
-    private String recordType ;
+    private String recordType;
     private String specificFunction;
 
- private String migrated;
 
-    }
+}

@@ -1,16 +1,13 @@
-package com.bi.service.service;
+package com.bi.service.serviceMongodb;
 
-import com.bi.service.model.Person;
-import com.bi.service.repositories.PEPMessagesRepository;
+
+import com.bi.service.model.mongodb.Person;
+import com.bi.service.repositoriesMongoDB.PEPMessagesRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Transactional
 public class PEPMigrationService {
 
-    //TODO
-    //repo for MARIADB
 
     PEPMessagesRepository pepMessagesRepository;
 
@@ -19,7 +16,7 @@ public class PEPMigrationService {
     }
 
 
-    public void migratePerson(Person person) {
+    public void migratedPerson(Person person) {
 
         System.out.println(person.getIdentifier());
 

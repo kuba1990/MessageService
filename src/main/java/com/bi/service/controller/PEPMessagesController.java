@@ -1,14 +1,12 @@
 package com.bi.service.controller;
 
 import com.bi.service.exception.ResourceBadRequestException;
-import com.bi.service.model.Person;
-import com.bi.service.repositories.PEPMessagesRepository;
-import com.bi.service.service.PEPMessageService;
+import com.bi.service.model.mongodb.Person;
+import com.bi.service.repositoriesMongoDB.PEPMessagesRepository;
+import com.bi.service.serviceMongodb.PEPMessageService;
 import lombok.extern.slf4j.Slf4j;
-import org.bson.Document;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,19 +29,6 @@ public class PEPMessagesController {
     }
 
 
-
-
-    @GetMapping("/{value}")
-    public List<Document> getOntolgizedMessage(@PathVariable("value") String value) {
-        log.debug("Fetching ontologized messages for id {} .", value);
-
-        List<Document> messages = pEPMessagesRepository.getOntologizedMessages(value);
-        log.info("Fetched ontologized messages for id {}, found {} messages.", value, messages.size());
-
-        return messages;
-
-    }
-
     @GetMapping(params = "limit")
     public List<Person> getSortedOntolgizedMessage(@RequestParam(required = false, value = "limit", defaultValue = "10000") int limit) {
 
@@ -52,6 +37,7 @@ public class PEPMessagesController {
         }
 
         List<Person> messages = pepMessageService.migrate(limit);
+
 
         log.info("Fetch for latest {} ontologized messages, returned {} messages. ", limit, messages.size());
         return messages;
