@@ -20,15 +20,14 @@ public class Country {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id_book")
     private Integer id;
 
     @Column(name = "name")
     private String name;
 
     @ManyToMany(cascade = CascadeType.ALL)
-
-    //TODO country_ID nie wystepuje!
-    @JoinTable(name = "bi_person_country", joinColumns = @JoinColumn(name = "country_id"), inverseJoinColumns = @JoinColumn(name = "person_id"))
+    @JoinTable(name="bi_person_country", joinColumns=@JoinColumn(name="id_country"), inverseJoinColumns=@JoinColumn(name="id_person"))
     private Set<Person> persons;
 
 

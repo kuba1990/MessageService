@@ -4,7 +4,7 @@ import lombok.Data;
 import org.bson.types.ObjectId;
 
 @Data
-public class Person {
+public class PepPerson {
 
     private ObjectId _id;
     private String identifier;

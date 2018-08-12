@@ -1,7 +1,7 @@
 package com.bi.service.repositoriesMongoDB;
 
 import com.bi.service.config.DatabaseProperties;
-import com.bi.service.model.mongodb.Person;
+import com.bi.service.model.mongodb.PepPerson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoOperations;
@@ -29,7 +29,7 @@ public class PEPMessageRepositoryImpl implements PEPMessagesRepository {
     }
 
 
-    public List<Person> findPersons(int limit) {
+    public List<PepPerson> findPersons(int limit) {
         Query query = new Query();
 
         query.with(new Sort(new Sort.Order(Sort.Direction.DESC, "_id")));
@@ -38,7 +38,7 @@ public class PEPMessageRepositoryImpl implements PEPMessagesRepository {
         //TODO database count from mariadb repositories
         query.skip(10);
 
-        return mongoTemplate.find(query, Person.class, config.getCollectionName());
+        return mongoTemplate.find(query, PepPerson.class, config.getCollectionName());
 
     }
 

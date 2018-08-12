@@ -1,12 +1,12 @@
 package com.bi.service.repositoriesMongoDB;
 
-import com.bi.service.model.mongodb.Person;
+import com.bi.service.model.mongodb.PepPerson;
 
 import java.util.List;
 
 public interface PEPMessagesRepository {
 
-    public List<Person> findPersons(int numbersOfMessages);
+    public List<PepPerson> findPersons(int numbersOfMessages);
 
     public void markPersonAsMigrated(String indetifier);
 

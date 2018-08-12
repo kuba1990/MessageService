@@ -1,7 +1,7 @@
 package com.bi.service.controller;
 
 import com.bi.service.exception.ResourceBadRequestException;
-import com.bi.service.model.mongodb.Person;
+import com.bi.service.model.mongodb.PepPerson;
 import com.bi.service.repositoriesMongoDB.PEPMessagesRepository;
 import com.bi.service.serviceMongodb.PEPMessageService;
 import lombok.extern.slf4j.Slf4j;
@@ -30,14 +30,13 @@ public class PEPMessagesController {
 
 
     @GetMapping(params = "limit")
-    public List<Person> getSortedOntolgizedMessage(@RequestParam(required = false, value = "limit", defaultValue = "10000") int limit) {
+    public List<PepPerson> getSortedOntolgizedMessage(@RequestParam(required = false, value = "limit", defaultValue = "10000") int limit) {
 
         if (limit > 10000) {
             throw new ResourceBadRequestException();
         }
 
-        List<Person> messages = pepMessageService.migrate(limit);
-
+        List<PepPerson> messages = pepMessageService.migrate(limit);
 
         log.info("Fetch for latest {} ontologized messages, returned {} messages. ", limit, messages.size());
         return messages;

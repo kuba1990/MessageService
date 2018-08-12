@@ -1,13 +1,12 @@
+/*
 package com.bi.service.model.mariadb;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.util.List;
 
 @Table(name = "bi_person_country")
 @Entity
@@ -20,16 +19,14 @@ public class PersonCountry {
     @ManyToOne
     private Person person;
 
-    @ManyToMany
-    private List<Country> countries;
+    @ManyToOne
+    private Country countries;
 
-    public List<Country> getCountries() {
-        return countries;
-    }
 
-    public void setCountries(List<Country> countries) {
+    public void setCountries(Country countries) {
         this.countries = countries;
     }
+
 
     public Integer getId() {
         return id;
@@ -47,3 +44,4 @@ public class PersonCountry {
         this.person = person;
     }
 }
+*/

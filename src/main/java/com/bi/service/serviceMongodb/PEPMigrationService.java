@@ -1,7 +1,7 @@
 package com.bi.service.serviceMongodb;
 
 
-import com.bi.service.model.mongodb.Person;
+import com.bi.service.model.mongodb.PepPerson;
 import com.bi.service.repositoriesMongoDB.PEPMessagesRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,7 @@ public class PEPMigrationService {
     }
 
 
-    public void migratedPerson(Person person) {
+    public void migratedPerson(PepPerson person) {
 
         System.out.println(person.getIdentifier());
 
