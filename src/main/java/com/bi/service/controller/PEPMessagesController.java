@@ -15,7 +15,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/messages")
+@RequestMapping("/start")
 @CrossOrigin
 public class PEPMessagesController {
 
@@ -29,17 +29,17 @@ public class PEPMessagesController {
     }
 
 
-    @GetMapping(params = "limit")
-    public List<PepPerson> getSortedOntolgizedMessage(@RequestParam(required = false, value = "limit", defaultValue = "10000") int limit) {
+    @GetMapping(params = "amount")
+    public void getSortedOntolgizedMessage(@RequestParam(required = false, value = "amount", defaultValue = "10000") int amount) {
 
-        if (limit > 10000) {
+        if (amount > 10000) {
             throw new ResourceBadRequestException();
         }
 
-        List<PepPerson> messages = pepMessageService.migrate(limit);
+        List<PepPerson> messages = pepMessageService.migrate(amount);
 
-        log.info("Fetch for latest {} ontologized messages, returned {} messages. ", limit, messages.size());
-        return messages;
+        log.info("Fetch for latest {} ontologized messages, returned {} messages. ", amount, messages.size());
+//        return messages;
 
     }
 

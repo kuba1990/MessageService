@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS `bi_person` (
         `name` VARCHAR(50) NOT NULL,
         `last_name` VARCHAR(100) NOT NULL,
          `additional_info` VARCHAR(50) NOT NULL,
-		`gender` INT NOT NULL REFERENCES bi_gender
+        `gender_id` VARCHAR (50) UNIQUE REFERENCES bi_gender
     ) COLLATE='utf8_bin';
 
 -- ----------------------------------------------------- 
@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS `bi_person` (
 -- ----------------------------------------------------- 
 CREATE TABLE IF NOT EXISTS `bi_gender` (
         `id_gender` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-        `gender` VARCHAR(10) NOT NULL
+        `name`  VARCHAR(10) NOT NULL  
     ) COLLATE='utf8_bin';
     
 -- ----------------------------------------------------- 
@@ -29,8 +29,8 @@ CREATE TABLE IF NOT EXISTS `bi_gender` (
 
 CREATE TABLE IF NOT EXISTS `bi_country` (
         `id_country` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-        `country` VARCHAR(10) NOT NULL
-    ) COLLATE='utf8_bin';    
+        `name`  VARCHAR(10) NOT NULL 
+    ) COLLATE='utf8_bin'; 
     
 -- ----------------------------------------------------- 
 -- Table 'bi`.`PersonCountry` 

@@ -36,3 +36,4 @@ spring:
       password: iemeTuopa3Ee
       platform: mysql
       separator: ;
+

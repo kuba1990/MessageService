@@ -1,4 +1,3 @@
-/*
 package com.bi.service.model.mariadb;
 
 import javax.persistence.Entity;
@@ -44,4 +43,3 @@ public class PersonCountry {
         this.person = person;
     }
 }
-*/
