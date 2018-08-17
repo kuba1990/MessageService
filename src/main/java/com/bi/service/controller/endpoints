@@ -1,0 +1,99 @@
+1. Dodanie nowej osoby – wykonanie metody http: POST – wysłanie pod adres https://svc-dev-cluster1.blue.bisnode.net/{nazwa aplikacji}/v1/person struktury JSON:
+{
+“name” : “Jan”,
+“last_name” : “Kowalski”,
+“additional_info” : “PEP”,
+“country”: [“Poland”,”Japan”]
+“gender”: “Male”
+}
+
+
+
+Jeśli osoba o podanych danych istnieje w bazie aplikacja powinna zwrócić kod błędu 400 – Bad request. Jeśli osoba nie istnieje – aplikacja powinna dodać osobę do bazy a następnie zwrócić kod 200 – OK
+2. Usunięcie istniejącej osoby – wykonanie metody http: DELETE – wysłanie pod adres https://svc-dev-cluster1.blue.bisnode.net/{nazwa aplikacji}/v1/person struktury JSON:
+{
+„id”: 123
+}
+Akcja ta powoduje usunięcie osoby o id 123, a nastęþnie zwrócenie kodu http 204 No Content – jeśli taka osoba nie istnieje zwrócony zostaje błąd o kodzie 404 – Not found
+3. Aktualizacja danych istnijącej osoby – wykonanie metody PUT – wysłanie pod adres https://svc-dev-cluster1.blue.bisnode.net/{nazwa aplikacji}/v1/person struktury JSON:
+{
+„id”: 123
+“name” : “Jan”,
+“last_name” : “Kowalski”,
+“additional_info” : “PEP”,
+“country”: [“Poland”],
+“gender”: “Male”
+}
+Akcja ta powoduje aktualizację danych osoby o id 123, a nastęþnie zwrócenie kodu http 200 – jeśli taka osoba nie istnieje zwrócony zostaje błąd o kodzie 404 – Not found.
+4. Zwrócenie istniejącej osoby – wykonianie metody http GET – https://svc-dev-cluster1.blue.bisnode.net/{nazwa aplikacji}/v1/person/id: - powinna zwrócić dane osoby (w formacie JSON) o identyfikatorze równym podanej jako parametr id wartości:
+{
+“name” : “Jan”,
+“last_name” : “Kowalski”,
+“additional_info” : “PEP”,
+“country”: [“Poland”,”USA”]
+“gender”: “Male”
+}
+Jeśli podana osoba nie istnieje aplikacja powinna swrócić kod błędu 404 – Not Found.
+5. Zwrócenie listy osób, które są przypisane do podanego jako parametr kraju – wykonanie metodu http GET https://svc-dev-cluster1.blue.bisnode.net/{nazwa aplikacji}/v1/person?ctry=Poland. Akcja powinna zwrócić strukturę JSON:
+[
+{
+„id”: 123
+“name” : “Jan”,
+“last_name” : “Kowalski”,
+“additional_info” : “PEP”,
+“country”: [“Poland”,”USA”, „RPA”]
+“gender”: “Male”
+},
+{
+„id”: 126
+“name” : “Maria”,
+“last_name” : “Kowalska”,
+“additional_info” : “PEP”,
+“country”: [“Poland”,”Belgia”]
+“gender”: “Female”
+},
+{
+…
+]
+...
+]
+W razie braku osób spełniających kryteria – aplikacjia powinna zwrócić kod błędu 404- not found.
+6. Zwrócenie listy osób, które są przypisane do podanego jako parametr kraju – wykonanie metodu http GET https://svc-dev-cluster1.blue.bisnode.net/{nazwa aplikacji}/v1/person?gender=Male. Akcja powinna zwrócić strukturę JSON:
+[
+{
+„id”: 123
+“name” : “Jan”,
+“last_name” : “Kowalski”,
+“additional_info” : “PEP”,
+“country”: [“Poland”,”Germany”]
+“gender”: “Male”
+},
+{
+„id”: 126
+“name” : „Mike”,
+“last_name” : “Unknow”,
+“additional_info” : “PEP”,
+“country”: [“China”,”Japan”]
+“gender”: “Male”
+},
+{
+…
+]
+...
+]
+W razie braku osób spełniających kryteria – aplikacjia powinna zwrócić kod błędu 404- not found.
+7. Zwrócenie listy osób pogrupowanych po kraju – wykonanie metody http GET https://svc-dev-cluster1.blue.bisnode.net/{nazwa aplikacji}/v1/aggregateddata/ctry – powinna zwrócić analogiczną strukturę:
+{
+„Poland”: [{dane osoby1}, {dane osoby 2} ],
+„Japan” : [{dane osoby1}, {dane osoby3}]
+}
+8. Zwrócenie listy osób pogrupowanych po płci i kraju. Wykonianie metody http GET: https://svc-dev-cluster1.blue.bisnode.net/{nazwa aplikacji}/v1/aggregateddata/ctry/gender – akcja powinna zwrócić analogiczną strukturę:
+{
+“Male”: {
+“kraj 1”: {[{(dane osoby 1)}, {(dane osoby 2)},…{(dane osoby n)}]
+}
+“kraj 2”: { … }
+“kraj n”: { … }
+}
+“Female”: { … }
+}

@@ -1,8 +1,11 @@
-/*
 package com.bi.service.serviceMariaDB;
+
+import com.bi.service.model.rest.Person;
 
 public interface PersonService {
 
-    int numberMigratedPeople();
+    public Person addPerson();
+
+    public Person deletePerson();
 }
-*/
+
