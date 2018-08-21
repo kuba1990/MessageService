@@ -7,6 +7,8 @@ import com.bi.service.repositoriesMariaDB.CountryRepository;
 import com.bi.service.repositoriesMariaDB.GenderRepository;
 import com.bi.service.repositoriesMariaDB.PersonRepository;
 import com.bi.service.repositoriesMongoDB.PEPMessagesRepository;
+import com.bi.service.serviceMariaDB.PersonService;
+import com.bi.service.serviceMariaDB.PersonServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -30,30 +32,37 @@ public class PEPMessageService {
 
     CountryRepository countryRepository;
 
-    /*    PersonCountryRepository personCountryRepository;*/
+    PersonService personService;
 
 
-    public PEPMessageService(PEPMessagesRepository pepMessagesRepository, PersonRepository personRepository, GenderRepository genderRepository, CountryRepository countryRepository/*, PersonCountryRepository personCountryRepository*/) {
+    public PEPMessageService(PEPMessagesRepository pepMessagesRepository, PersonRepository personRepository, GenderRepository genderRepository, CountryRepository countryRepository, PersonService personService) {
         this.pepMessagesRepository = pepMessagesRepository;
         this.personRepository = personRepository;
         this.genderRepository = genderRepository;
         this.countryRepository = countryRepository;
-        /*this.personCountryRepository = personCountryRepository;*/
+        this.personService = personService;
     }
 
     public List<PepPerson> migrate(int limit) {
 
-        Country country = new Country();
+        List<PepPerson> pepPersons = pepMessagesRepository.findPersons(limit);
+        for (int a = 0; a < pepPersons.size(); a++) {
+            personService.addPerson(pepPersons.get(a));
 
+
+        }
+
+            return pepPersons;
+    }
+
+
+       /* Country country = new Country();
         country.setName("Poland");
-
         countryRepository.saveAndFlush(country);
 
 
         Gender gender = new Gender();
-
         gender.setName("MALE");
-
         genderRepository.saveAndFlush(gender);
 
         com.bi.service.model.mariadb.Person person = new com.bi.service.model.mariadb.Person();
@@ -73,7 +82,7 @@ public class PEPMessageService {
         personRepository.saveAndFlush(person);
 
 
-        return new ArrayList<>();
+        return new ArrayList<>();*/
 
         //download records from mongoDB
 
@@ -82,21 +91,7 @@ public class PEPMessageService {
 
 
 
-        /*for (int a = 0; a < pepPersons.size(); a++) {
 
-            com.bi.service.model.mariadb.Person person = new com.bi.service.model.mariadb.Person();
-
-            Gender gender = new Gender();
-
-            gender.setName(pepPersons.get(a).getGender());
-
-            gender = genderRepository.save(gender);
-
-            Country country = new Country();
-
-            country.setName(pepPersons.get(a).getCountry());
-
-            country = countryRepository.save(country);*/
 
            /* person.setName(pepPersons.get(a).getFirstName());
             person.setLastName(pepPersons.get(a).getLastName());
@@ -115,7 +110,5 @@ public class PEPMessageService {
         }
 
 
-
-    }
 
 

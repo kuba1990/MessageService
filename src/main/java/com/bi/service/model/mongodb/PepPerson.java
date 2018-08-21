@@ -20,4 +20,21 @@ public class PepPerson {
     private String specificFunction;
 
 
+    @Override
+    public String toString() {
+        return "PepPerson{" +
+                "_id=" + _id +
+                ", identifier='" + identifier + '\'' +
+                ", title='" + title + '\'' +
+                ", gender='" + gender + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", alternativeScript='" + alternativeScript + '\'' +
+                ", function='" + function + '\'' +
+                ", category='" + category + '\'' +
+                ", country='" + country + '\'' +
+                ", recordType='" + recordType + '\'' +
+                ", specificFunction='" + specificFunction + '\'' +
+                '}';
+    }
 }
