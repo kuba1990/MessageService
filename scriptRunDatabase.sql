@@ -8,18 +8,19 @@ DROP TABLE IF EXISTS 'bi_person`,`bi_gender`,`bi_country`,`bi_person_country`;
 -- Table 'bi`.`person` 
 -- ----------------------------------------------------- 
 CREATE TABLE IF NOT EXISTS `bi_person` (
-        `id_person` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
         `name` VARCHAR(50) NOT NULL,
         `last_name` VARCHAR(100) NOT NULL,
          `additional_info` VARCHAR(50) NOT NULL,
-        `gender_id` VARCHAR (50) UNIQUE REFERENCES bi_gender
-    ) COLLATE='utf8_bin';
+        `gender_id` INT, 
+        FOREIGN KEY(gender_id) REFERENCES bi_gender(id))
+     COLLATE='utf8_bin';
 
 -- ----------------------------------------------------- 
 -- Table 'bi`.`gender` 
 -- ----------------------------------------------------- 
 CREATE TABLE IF NOT EXISTS `bi_gender` (
-        `id_gender` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
         `name`  VARCHAR(10) NOT NULL  
     ) COLLATE='utf8_bin';
     
@@ -28,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `bi_gender` (
 -- ----------------------------------------------------- 
 
 CREATE TABLE IF NOT EXISTS `bi_country` (
-        `id_country` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
         `name`  VARCHAR(10) NOT NULL 
     ) COLLATE='utf8_bin'; 
     
@@ -37,6 +38,8 @@ CREATE TABLE IF NOT EXISTS `bi_country` (
 -- -----------------------------------------------------     
 CREATE TABLE IF NOT EXISTS `bi_person_country` (
         `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-        `person` INT NOT NULL REFERENCES bi_person,
-        `country` INT NOT NULL REFERENCES bi_country
-    ) COLLATE='utf8_bin';        
+        `person_id` INT NOT NULL,
+        `country_id` INT NOT NULL,
+        FOREIGN KEY(person_id) REFERENCES bi_person(id),
+        FOREIGN KEY(country_id) REFERENCES bi_country(id))
+     COLLATE='utf8_bin';        

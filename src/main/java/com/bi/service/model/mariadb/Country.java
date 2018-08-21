@@ -11,8 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import java.util.List;
 import java.util.Set;
-
 
 @Table(name = "bi_country")
 @Entity
@@ -20,22 +20,22 @@ public class Country {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_country")
+    @Column(name = "id")
     private Integer id;
 
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name="bi_person_country", joinColumns=@JoinColumn(name="id_country"), inverseJoinColumns=@JoinColumn(name="id_person"))
-    private Set<Person> persons;
+
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "countries")
+    private List<Person> persons;
 
 
-    public Set<Person> getPersons() {
+    public List<Person> getPersons() {
         return persons;
     }
 
-    public void setPersons(Set<Person> persons) {
+    public void setPersons(List<Person> persons) {
         this.persons = persons;
     }
 
@@ -55,5 +55,3 @@ public class Country {
         this.name = name;
     }
 }
-
-

@@ -3,7 +3,6 @@ package com.bi.service.repositoriesMongoDB;
 import com.bi.service.config.DatabaseProperties;
 import com.bi.service.model.mongodb.PepPerson;
 import com.bi.service.repositoriesMariaDB.PersonRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -53,9 +52,10 @@ public class PEPMessageRepositoryImpl implements PEPMessagesRepository {
 
     }
 
-    private int getSkipNumber(){
+    private int getSkipNumber() {
 
         int skip = (int) personRepository.count();
+        System.out.println(personRepository.count());
 
         return skip;
     }

@@ -1,3 +1,4 @@
+/*
 package com.bi.service.model.rest;
 
 import java.util.List;
@@ -73,3 +74,4 @@ public class Person {
 
 
 }
+*/

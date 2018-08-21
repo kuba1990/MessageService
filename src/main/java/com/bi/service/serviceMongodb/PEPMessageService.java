@@ -10,6 +10,7 @@ import com.bi.service.repositoriesMongoDB.PEPMessagesRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -42,8 +43,7 @@ public class PEPMessageService {
 
     public List<PepPerson> migrate(int limit) {
 
-
-        /*Country country = new Country();
+        Country country = new Country();
 
         country.setName("Poland");
 
@@ -61,6 +61,8 @@ public class PEPMessageService {
         person.setName("Kuba");
         person.setLastName("WW");
         person.setAdditionalInfo("123");
+        person.setGender(gender);
+
 
         List<Country> countryPoland = new ArrayList<>();
 
@@ -69,21 +71,18 @@ public class PEPMessageService {
         person.setCountries(countryPoland);
 
         personRepository.saveAndFlush(person);
-       // person.setGender(gender);
 
 
-        return new ArrayList<>();*/
+        return new ArrayList<>();
 
         //download records from mongoDB
-        long time = System.currentTimeMillis();
-        List<PepPerson> pepPersons = pepMessagesRepository.findPersons(limit);
-        System.out.println("czas wykonania w mils:" + (System.currentTimeMillis() - time));
+
         //pepPersons.forEach(pepPerson -> System.out.println(pepPerson));
 
 
-        long timeDatabase = System.currentTimeMillis();
 
-        for(int a = 0 ; a<pepPersons.size(); a++) {
+
+        /*for (int a = 0; a < pepPersons.size(); a++) {
 
             com.bi.service.model.mariadb.Person person = new com.bi.service.model.mariadb.Person();
 
@@ -97,23 +96,26 @@ public class PEPMessageService {
 
             country.setName(pepPersons.get(a).getCountry());
 
-            country = countryRepository.save(country);
+            country = countryRepository.save(country);*/
 
-            person.setName(pepPersons.get(a).getFirstName());
+           /* person.setName(pepPersons.get(a).getFirstName());
             person.setLastName(pepPersons.get(a).getLastName());
             person.setAdditionalInfo(pepPersons.get(a).getIdentifier());
             person.setGender(gender);
 
             Set<Country> countries = new HashSet();
             countries.add(country);
-            person.setCountries(countries);
+            person.setCountries(countries);*/
 
 
-            personRepository.save(person);
+           /* personRepository.save(person);*/
+
+
+
         }
-        System.out.println("czas wykonania w mils: do bazy danych" + (System.currentTimeMillis() - timeDatabase));
-        return pepPersons;
+
+
 
     }
 
-}
+

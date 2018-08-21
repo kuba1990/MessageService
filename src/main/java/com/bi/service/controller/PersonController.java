@@ -1,6 +1,8 @@
+/*
 package com.bi.service.controller;
 
 import com.bi.service.model.rest.Person;
+import com.bi.service.serviceMariaDB.PersonService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,6 +26,12 @@ import java.util.List;
 public class PersonController {
 
 
+    private PersonService personService;
+
+    public PersonController(PersonService personService) {
+        this.personService = personService;
+    }
+
 //1. Dodanie nowej osoby – wykonanie metody http: POST – wysłanie pod adres https://svc-dev-cluster1.blue.bisnode.net/{nazwa aplikacji}/v1/person struktury JSON:
 //{
 //“name” : “Jan”,
@@ -34,11 +42,13 @@ public class PersonController {
 //}
 
 
-    /*@RequestMapping(value = "/create", method = RequestMethod.POST)
+    */
+/*@RequestMapping(value = "/create", method = RequestMethod.POST)
     public List<Customer> create(@RequestBody Customer user) {
         customerService.create(user);
         return customerService.getAll();
-    }*/
+    }*//*
+
 
 
     @PostMapping
@@ -51,7 +61,6 @@ public class PersonController {
 
     @DeleteMapping
     public void deletePerson(@RequestBody Person person) {
-
 
     }
 
@@ -85,3 +94,4 @@ public class PersonController {
 
 
 }
+*/

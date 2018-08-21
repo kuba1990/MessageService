@@ -7,10 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.util.Set;
+import java.util.List;
 
 
 @Table(name = "bi_person")
@@ -19,18 +21,17 @@ public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_person")
     private Integer id;
 
-    @Column(name = "name")
     private String name;
     @Column(name = "last_name")
     private String lastName;
     @Column(name = "additional_info")
     private String additionalInfo;
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "persons")
-    private Set<Country> countries;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "bi_person_country", joinColumns = @JoinColumn(name = "person_id"), inverseJoinColumns = @JoinColumn(name = "country_id"))
+    private List<Country> countries;
 
     @ManyToOne
     private Gender gender;
@@ -76,11 +77,11 @@ public class Person {
     }
 
 
-    public Set<Country> getCountries() {
+    public List<Country> getCountries() {
         return countries;
     }
 
-    public void setCountries(Set<Country> countries) {
+    public void setCountries(List<Country> countries) {
         this.countries = countries;
     }
 }

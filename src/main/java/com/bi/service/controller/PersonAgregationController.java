@@ -1,7 +1,9 @@
+/*
 package com.bi.service.controller;
 
 
 import com.bi.service.model.rest.Person;
+import com.bi.service.serviceMariaDB.PersonService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +21,12 @@ import java.util.Map;
 @CrossOrigin
 public class PersonAgregationController {
 
+
+    private PersonService personService;
+
+    public PersonAgregationController(PersonService personService) {
+        this.personService = personService;
+    }
 
     @GetMapping()
     public Map<String, List<Person>> getByCountry() {
@@ -48,3 +56,4 @@ public class PersonAgregationController {
     }
 
 }
+*/
